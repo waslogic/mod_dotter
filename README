@@ -1,0 +1,22 @@
+methods for mapping a module's object space to DOT file
+
+Prerequisites:
+The ruby code doesn't have any prerequisites; however, to turn the dot files into pretty pictures you will need Graphviz (http://www.graphviz.org/).
+
+Usage:
+# write mod diagram to a dot file
+def mymod_to_dot_file(mod, directional=false)
+  File.open('mymod.dot', 'w+'){|f| f.write mod.to_diagram(directional) }
+end
+
+# write a directional diagram to a dot file and then process the file with dot to produce an SVG image
+def dot_mymod(mod)
+  mymod_to_dot_file(mod, true)
+  `dot -Tsvg -o mymod.svg mymod.dot`
+end
+
+# write a non-directional diagram to a dot file and then process the file with neato to produce an SVG image
+def neato_mymod(mod)
+  mymod_to_dot_file(mod)
+  `neato -Tsvg -o mymod.svg mymod.dot`
+end
