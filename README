@@ -1,4 +1,4 @@
-methods for mapping a module's object space to DOT file
+methods for mapping a module's object space to a DOT file
 
 Prerequisites:
 The ruby code doesn't have any prerequisites; however, to turn the dot files into pretty pictures you will need Graphviz (http://www.graphviz.org/).
