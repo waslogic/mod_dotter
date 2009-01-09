@@ -34,7 +34,7 @@ class Module
     "\"#{name}\" [shape=Mrecord, fillcolor=pink2, style=filled, label=\"{#{name}|#{methods}}\"]"
   end
 
-  # private
+  private
   def mrecords
     as_str = lambda {|a,b| a.to_s <=> b.to_s }
     (mods.sort(&as_str) + klasses.sort(&as_str)).map{|r| "\t" + r.to_dot }.join("\n")
