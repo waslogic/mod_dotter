@@ -8,14 +8,6 @@ class Class
 end
 
 class Module
-  def klasses
-    self.constants.map {|x| self.const_get(x) if self.const_get(x).class == Class }.compact
-  end
-
-  def mods
-    self.constants.map {|x| self.const_get(x) if self.const_get(x).class == Module }.compact
-  end
-
   def to_diagram(directional=false)
     if directional == true
       type = 'digraph'
@@ -35,6 +27,14 @@ class Module
   end
 
   private
+  def klasses
+    self.constants.map {|x| self.const_get(x) if self.const_get(x).class == Class }.compact
+  end
+
+  def mods
+    self.constants.map {|x| self.const_get(x) if self.const_get(x).class == Module }.compact
+  end
+
   def mrecords
     as_str = lambda {|a,b| a.to_s <=> b.to_s }
     (mods.sort(&as_str) + klasses.sort(&as_str)).map{|r| "\t" + r.to_dot }.join("\n")
